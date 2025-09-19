@@ -1,6 +1,7 @@
 import {
   Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, BaseEntity
 } from "typeorm";
+import { Task } from "./task.entity";
 
 @Entity()
 export class User extends BaseEntity
@@ -19,6 +20,9 @@ export class User extends BaseEntity
 
     @Column()
     avatarURL!: string
+
+    @OneToMany(() => Task, (task) => task.owner, { cascade: true })
+    tasks!: Task[]
 
     @Column({ default: false })
     isAdmin!: boolean
