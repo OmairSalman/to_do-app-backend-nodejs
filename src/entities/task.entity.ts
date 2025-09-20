@@ -1,5 +1,5 @@
 import {
-  Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, BaseEntity,
+  Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity,
   ManyToOne,
   JoinColumn
 } from "typeorm";
@@ -34,6 +34,9 @@ export class Task extends BaseEntity
   @ManyToOne(() => TaskCategory, (category) => category.tasks, { eager: true, onDelete: "CASCADE" })
   @JoinColumn({ name: "category_id" })
   category!: TaskCategory
+
+  @Column()
+  completed!: boolean
 
   @CreateDateColumn()
   createdAt!: Date
