@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
 import 'dotenv/config';
 import { User } from "../entities/user.entity";
+import { Task } from "../entities/task.entity";
+import { TaskCategory } from "../entities/task-category.entity";
 
 const AppDataSource = new DataSource({
     type: "mysql",
@@ -9,7 +11,7 @@ const AppDataSource = new DataSource({
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    entities: [User],
+    entities: [User, Task, TaskCategory],
     synchronize: false,
     logging: false,
     migrations: ["src/database/migrations/**/*.ts"],
